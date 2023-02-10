@@ -1,0 +1,82 @@
+<!-- <div class="content"><h2>Resources</h2>
+    <p>Here are some links to help you get started:</p></div> -->
+
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      </head>
+<div class="container">
+    <div class="cen">
+        <h4>Welcome {{user?.userName}} ({{this.rol}})</h4>
+    </div>
+<div class="card-container">
+    <button class="card card-small" (click)="getPublishedPost()" tabindex="0">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      <span>Get all Published Post</span>
+    </button>
+
+    <!-- <button class="card card-small" href=""  tabindex="0">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      <span>Angular Material</span>
+    </button> -->
+</div>
+<div class="table-simple-headblue-govco col-12" *ngIf="post">
+    <table class="table display table-responsive-sm table-responsive-md" style="width:100%">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Publication Date</th>
+          <th>User</th>
+          <th>Post State</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let option of post">
+          <td>{{option.title}}</td>
+          <td>{{option.contentText}} </td>
+          <td>{{option.publicationDate.substr(0,10)}}</td>
+          <td>{{option.idUserNavigation.userName}}</td>
+          <td>{{option.statePostNavigation.description}}</td>
+          <td> <button (click)="getCommentsByPost(option)" class="btn btn-round btn-high">Detalle</button> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    
+    <div *ngIf="comments">
+        <section id="header"> <h4>Post:</h4>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Post Title:</strong> {{postComment.title}}</li>
+            <li class="list-group-item"><strong>Post Content: </strong>{{postComment.contentText}}</li>
+            <li class="list-group-item"><strong>Publication Date:</strong> {{postComment.publicationDate.substr(0,10)}}</li>
+            <li class="list-group-item"><strong>Author: </strong>{{postComment.idUserNavigation.userName}}</li>
+        </ul>
+    </section>
+        <section id="header"> <h4>Comentarios:</h4>
+            <div class="container">
+                <div class="row">
+                    <li class="list-group-item" *ngFor="let comment of comments"><strong> {{comment.idUserNavigation.userName}} </strong> ({{comment.commentTypeNavigation?.typeDescription}}-comment):
+                        <div>
+                            {{comment.textComment}}
+                        </div>
+                    </li>
+                    <br>
+                </div>
+            </div> 
+        </section>
+
+        
+
+      </div>
+  </div>
+
+
+</div>
+ 
